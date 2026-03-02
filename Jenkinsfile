@@ -4,23 +4,26 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Это скачивает код из GitHub
                 checkout scm
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                // bat — это команда для Windows
+                bat 'mvn clean compile'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
     }
     post {
         always {
-            allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+            // Пока мы не настроили плагин Allure, просто выведем сообщение
+            echo 'Билд завершен, проверяю отчеты...'
         }
     }
 }
