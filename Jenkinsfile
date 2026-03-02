@@ -1,16 +1,17 @@
 pipeline {
     agent any
 
+    tools {
+        // Укажите здесь то же имя, которое вы дали в настройках (Шаг 1)
+        maven 'M3'
+    }
+
     stages {
         stage('Checkout') {
-            steps {
-                // Это скачивает код из GitHub
-                checkout scm
-            }
+            steps { checkout scm }
         }
         stage('Build') {
             steps {
-                // bat — это команда для Windows
                 bat 'mvn clean compile'
             }
         }
@@ -22,7 +23,6 @@ pipeline {
     }
     post {
         always {
-            // Пока мы не настроили плагин Allure, просто выведем сообщение
             echo 'Билд завершен, проверяю отчеты...'
         }
     }
