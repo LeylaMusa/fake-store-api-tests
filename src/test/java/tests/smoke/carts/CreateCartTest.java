@@ -20,7 +20,7 @@ public class CreateCartTest {
 
         CartProductRequest p = new CartProductRequest();
         p.setProductId(1);
-        p.setQuantity(1);
+        p.setQuantity(5);
 
         CreateCartRequest body = new CreateCartRequest();
         body.setUserId(1);
@@ -39,5 +39,6 @@ public class CreateCartTest {
         assertNotNull(created.getProducts());
         assertFalse(created.getProducts().isEmpty());
         assertEquals(0, created.getProducts().get(0).getId());
+
     }
 }
